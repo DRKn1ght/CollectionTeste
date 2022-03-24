@@ -1,0 +1,6 @@
+.Container{
+    display: flex;
+    align-items: center;
+    background-color: #24292e;
+    padding: 11px 16px;
+}
