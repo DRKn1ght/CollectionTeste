@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 export default function Header() {
   return (
     <header className='Container'>
-        <Typography variant="h6" sx={ typoGraphStyle }>
+        <Typography variant="h6" flexShrink={0} sx={ typoGraphStyle }>
             LOGO 
         </Typography>
         <Button sx={{color: 'white'}} variant="text">

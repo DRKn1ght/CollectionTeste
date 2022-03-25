@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header';
 import AboutController from './controller/AboutController'
-import LoginController from './controller/LoginController'
+import ProductsController from './controller/ProductsController'
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
     <Header></Header>
       <Routes>
-        <Route path="/" element={<LoginController />}/>
+        <Route path="/" element={<ProductsController />}/>
         <Route path="/:eventName" element={<AboutController />}/>
       </Routes>
     </BrowserRouter> 
