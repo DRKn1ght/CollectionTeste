@@ -5,7 +5,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
-import ModalDetails from '../../components/ModalDetails';
+import FilterChip from '../../components/FilterChips'
+import Typography from '@mui/material/Typography';
 
 export default function ProductsView(props) {
     const { handleEditClick, handleDesactiveClick, handleDetailsClick } = props;
@@ -14,12 +15,15 @@ export default function ProductsView(props) {
         <div className='container'>
             <div className='main'>
                 <div className='left-side'>
-                    <TextField style={{ marginLeft: 10, marginTop: 2, minWidth:210}} id="standard-basic" placeholder='Pesquisar por produtos' variant="standard"
+                    <TextField style={{ marginLeft: 10, marginTop: 2, minWidth: 210 }} id="standard-basic" placeholder='Pesquisar por produtos' variant="standard"
                         InputProps={{
                             startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment>
                         }}>
                     </TextField>
-                    <h1>teste</h1>
+                    <Typography paddingLeft={2} gutterBottom>
+                        Filtros:
+                    </Typography>
+                    <FilterChip></FilterChip>
                 </div>
                 <div className='right-side'>
                     <Grid

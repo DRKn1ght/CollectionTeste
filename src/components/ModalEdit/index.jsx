@@ -5,14 +5,16 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import EditIcon from '@mui/icons-material/Edit';
 import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import ComboBox from '@mui/material/Autocomplete';
+import CardMedia from '@mui/material/CardMedia';
+import Brands from '../../data/brands'
+
 const StyledMenu = styled((props) => (
     <Menu
         elevation={0}
@@ -60,25 +62,70 @@ export default function ModalEdit() {
                 <MoreVertIcon />
             </IconButton>
             <Dialog open={openModal}>
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
-                    </DialogContentText>
+            <IconButton sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, .4)', verticalAlign: 'middle' }}>
+                <EditIcon />
+            </IconButton>
+                <CardMedia
+                    component="img"
+                    height='50%'
+                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                    alt="green iguana"
+                />
+                <DialogContent dividers>
                     <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                        variant="standard"
+                        id="product-description"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ width: '100%', marginTop: 2 }}
+                        label="ID do produto"
+                        multiline
+                        onChange={handleChange}
                     />
+
+                    <TextField
+                        id="product-description"
+                        label="Descrição do produto"
+                        multiline
+                        sx={{ width: '100%', marginTop: 2 }}
+                        maxRows={4}
+                        value={value}
+                        onChange={handleChange}
+                    />
+
+                    <ComboBox
+                        id="product-brand"
+                        options={Brands}
+                        sx={{ width: '100%', marginTop: 2 }}
+                        renderInput={(params) => <TextField {...params} label="Marca" />}
+                    />
+
+                    <TextField
+                        id="product-active"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ width: '100%', marginTop: 2 }}
+                        label="Status do produto"
+                        multiline
+                        onChange={handleChange}
+                    />
+
+                    <TextField
+                        id="product-inactive-date"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ width: '100%', marginTop: 2 }}
+                        label="Data de inativação"
+                        multiline
+                        onChange={handleChange}
+                    />
+
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleModalClose}>Cancel</Button>
-                    <Button onClick={handleModalClose}>Subscribe</Button>
+                    <Button onClick={handleModalClose}>Cancelar</Button>
+                    <Button onClick={handleModalClose}>Confirmar mudanças</Button>
                 </DialogActions>
             </Dialog>
             <StyledMenu

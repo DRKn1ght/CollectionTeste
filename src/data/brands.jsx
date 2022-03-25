@@ -6,4 +6,3 @@ const brands = [
     {label: "Ceusa", description: "Descrição da marca Ceusa"},
 ]
 export default brands;
-//Portobello, Decortiles, Portinari, Delta e Ceusa

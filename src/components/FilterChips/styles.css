@@ -1,0 +1,6 @@
+.filter-container{
+    display: flex;
+    justify-Content: center;
+    flex-Wrap: wrap;
+    list-style: none;
+}
