@@ -30,3 +30,9 @@ body,html {
 .right-side{ 
     width: 100%;
 }
+
+.fab-style{
+    position: fixed;
+    bottom: 16;
+    right: 16;
+}

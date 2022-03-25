@@ -7,9 +7,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import FilterChip from '../../components/FilterChips'
 import Typography from '@mui/material/Typography';
+import ModalAdd from '../../components/ModelAdd';
 
 export default function ProductsView(props) {
-    const { handleEditClick, handleDesactiveClick, handleDetailsClick } = props;
     //console.log(openModalDetails);
     return (
         <div className='container'>
@@ -41,6 +41,7 @@ export default function ProductsView(props) {
                     </Grid>
                 </div>
             </div>
+            <ModalAdd />
         </div>
     )
 }
