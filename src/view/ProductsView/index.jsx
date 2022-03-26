@@ -7,10 +7,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import FilterChip from '../../components/FilterChips'
 import Typography from '@mui/material/Typography';
-import ModalAdd from '../../components/ModelAdd';
-
+import ModalAdd from '../../components/ModalAdd';
+// newProductValues={newProductValues}
+//             setNewProductValues={setNewProductValues}
+//             handleNewProductSubmit={handleNewProductSubmit}
+//             handleChangeFieldNewProduct={handleChangeFieldNewProduct}
 export default function ProductsView(props) {
-    //console.log(openModalDetails);
+    const { newProductValues, setNewProductValues, handleNewProductSubmit, handleChangeFieldNewProduct, productList, brandList, handleInsertClick } = props;
     return (
         <div className='container'>
             <div className='main'>
@@ -23,7 +26,7 @@ export default function ProductsView(props) {
                     <Typography paddingLeft={2} gutterBottom>
                         Filtros:
                     </Typography>
-                    <FilterChip></FilterChip>
+                    <FilterChip brandList={brandList}></FilterChip>
                 </div>
                 <div className='right-side'>
                     <Grid
@@ -35,13 +38,17 @@ export default function ProductsView(props) {
                         columnGap={2}
                         columnSpacing={{ xs: 1, sm: 2, md: 3 }}
                     >
-                        {[1, 2, 3, 4, 5].map(n => (
-                            <Card ></Card>
+                        {productList.map(productInfos => (
+                            <Card productInfos={productInfos}></Card>
                         ))}
                     </Grid>
                 </div>
             </div>
-            <ModalAdd />
+            <ModalAdd
+                newProductValues={newProductValues}
+                setNewProductValues={setNewProductValues}
+                handleNewProductSubmit={handleNewProductSubmit}
+                handleChangeFieldNewProduct={handleChangeFieldNewProduct} />
         </div>
     )
 }

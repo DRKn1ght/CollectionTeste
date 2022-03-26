@@ -8,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import Divider from '@mui/material/Divider';
+import PropTypes from 'prop-types';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -18,7 +19,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedDialogs() {
+ModalDetails.propTypes = {
+  productInfos: PropTypes.array
+}
+
+export default function ModalDetails(props) {
+  const { productInfos } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -41,22 +47,18 @@ export default function CustomizedDialogs() {
         <CardMedia
         component="img"
         height='50%'
-        image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        image={productInfos.thumb}
       />
       <IconButton id="demo-customized-button" aria-controls={open ? 'demo-customized-menu' : undefined} aria-expanded={open ? 'true' : undefined} onClick={handleClose} aria-label="more" sx={{position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.2)', right:'0'}}>
             <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-        <Typography gutterBottom>
-            Produto
-          </Typography>
         <Typography variant="body2" color="text.secondary">
-            Detalhes do produto
+            {productInfos.description}
           </Typography>
           <Divider></Divider>
-          <Typography gutterBottom>
-            Marca
+          <Typography gutterBottom marginTop={2}>
+            {productInfos.brand}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Detalhes da marca

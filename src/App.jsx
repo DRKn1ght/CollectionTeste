@@ -2,8 +2,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header';
-import AboutController from './controller/AboutController'
-import ProductsController from './controller/ProductsController'
+import AboutController from './controller/AboutViewController'
+import ProductsController from './controller/ProductsViewController'
 
 function App() {
 

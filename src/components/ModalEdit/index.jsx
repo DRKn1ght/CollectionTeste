@@ -14,6 +14,7 @@ import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
 import ComboBox from '@mui/material/Autocomplete';
 import CardMedia from '@mui/material/CardMedia';
 import Brands from '../../data/brands'
+import PropTypes from 'prop-types';
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -34,7 +35,12 @@ const StyledMenu = styled((props) => (
     },
 }));
 
-export default function ModalEdit() {
+ModalEdit.propTypes = {
+    productInfos: PropTypes.array
+  }
+
+export default function ModalEdit(props) {
+    const { productInfos } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleCloseMenu = () => {
@@ -52,7 +58,7 @@ export default function ModalEdit() {
         setOpenModal(false);
     };
 
-    const [value, setValue] = React.useState('Este é o produto X');
+    const [value, setValue] = React.useState();
     const handleChange = (event) => {
         setValue(event.target.value);
     };
@@ -68,17 +74,17 @@ export default function ModalEdit() {
                 <CardMedia
                     component="img"
                     height='50%'
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
+                    image={productInfos.thumb}
                 />
                 <DialogContent dividers>
                     <TextField
-                        id="product-description"
+                        id="product-id"
                         InputProps={{
                             readOnly: true,
                         }}
                         sx={{ width: '100%', marginTop: 2 }}
                         label="ID do produto"
+                        defaultValue={productInfos._id}
                         multiline
                         onChange={handleChange}
                     />
@@ -89,6 +95,7 @@ export default function ModalEdit() {
                         multiline
                         sx={{ width: '100%', marginTop: 2 }}
                         maxRows={4}
+                        defaultValue={productInfos.description}
                         value={value}
                         onChange={handleChange}
                     />
@@ -97,6 +104,7 @@ export default function ModalEdit() {
                         id="product-brand"
                         options={Brands}
                         sx={{ width: '100%', marginTop: 2 }}
+                        defaultValue={productInfos.brand}
                         renderInput={(params) => <TextField {...params} label="Marca" />}
                     />
 
@@ -107,6 +115,7 @@ export default function ModalEdit() {
                         }}
                         sx={{ width: '100%', marginTop: 2 }}
                         label="Status do produto"
+                        defaultValue={productInfos.active ? "Ativo" : "Inativo"}
                         multiline
                         onChange={handleChange}
                     />
@@ -118,6 +127,7 @@ export default function ModalEdit() {
                         }}
                         sx={{ width: '100%', marginTop: 2 }}
                         label="Data de inativação"
+                        defaultValue={productInfos.inactivate_date === undefined ? "O produto está ativo" : productInfos.inactivate_date}
                         multiline
                         onChange={handleChange}
                     />

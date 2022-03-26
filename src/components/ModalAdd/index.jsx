@@ -4,16 +4,25 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import ComboBox from '@mui/material/Autocomplete';
 import CardMedia from '@mui/material/CardMedia';
 import Brands from '../../data/brands'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import DefaultImage from '../../assets/PortobelloDefault.webp';
+import PropTypes from 'prop-types';
+import DialogURL from '../DialogURL'
 
-export default function ModalEdit() {
+ModalAdd.protoType = {
+    newProductValues: PropTypes.func,
+    setNewProductValues: PropTypes.func,
+    handleNewProductSubmit: PropTypes.func,
+    handleChangeFieldNewProduct: PropTypes.func
+}
+
+export default function ModalAdd(props) {
+    const { newProductValues, setNewProductValues, handleNewProductSubmit, handleChangeFieldNewProduct } = props;
+    const [imageURL, setImageURL] = React.useState(DefaultImage)
     const [openModal, setOpenModal] = React.useState(false);
     const handleModalOpen = () => {
         setOpenModal(true);
@@ -22,23 +31,21 @@ export default function ModalEdit() {
         setOpenModal(false);
     };
 
-    const [value, setValue] = React.useState('Este é o produto X');
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+    const handleChangeImage = (url) =>{
+        setImageURL(url);
+    }
+
     return (
         <div>
             <Fab color="primary" style={{ position: 'fixed', bottom: 16, right: 16 }} aria-label={"Adicionar"} onClick={handleModalOpen}>
                 {<AddIcon />}
             </Fab>
             <Dialog open={openModal}>
-                <IconButton height='50%' sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, .4)', left: '45%', bottom: "75%", verticalAlign: 'middle' }}>
-                    <EditIcon />
-                </IconButton>
+                <DialogURL handleChangeFieldNewProduct={handleChangeFieldNewProduct} handleChangeImage={handleChangeImage}/>
                 <CardMedia
                     component="img"
                     height='50%'
-                    image={DefaultImage}
+                    image={imageURL}
                     alt="Default Image"
                 />
                 <DialogContent dividers>
@@ -48,8 +55,7 @@ export default function ModalEdit() {
                         multiline
                         sx={{ width: '100%', marginTop: 2 }}
                         maxRows={4}
-                        value={value}
-                        onChange={handleChange}
+                        onChange={(e) => {handleChangeFieldNewProduct(e, "description")}}
                     />
 
                     <ComboBox
@@ -57,6 +63,7 @@ export default function ModalEdit() {
                         options={Brands}
                         sx={{ width: '100%', marginTop: 2 }}
                         renderInput={(params) => <TextField {...params} label="Marca" />}
+                        onChange={(e) => {handleChangeFieldNewProduct(e, "brand")}}
                     />
 
                     <ComboBox
@@ -64,6 +71,7 @@ export default function ModalEdit() {
                         options={['Ativo', 'Inativo']}
                         sx={{ width: '100%', marginTop: 2 }}
                         renderInput={(params) => <TextField {...params} label="Status do produto" />}
+                        onChange={(e) => {handleChangeFieldNewProduct(e, "active")}}
                     />
 
                 </DialogContent>

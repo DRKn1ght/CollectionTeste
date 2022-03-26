@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 const productSchema = mongoose.Schema({
     thumb: {
-        type: Image,
+        type: String,
         required: true,
     },
     description: {
@@ -28,6 +28,6 @@ const productSchema = mongoose.Schema({
 }
 );
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Produtos", productSchema);
 
 export default Product;
