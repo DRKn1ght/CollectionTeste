@@ -19,6 +19,10 @@
   - Foi utilizado Express para a criação das rotas de API e o Mongoose para a conexão com o banco de dados
 - A API é iniciada na porta 5000
 
+### Observações
+- Por questões de performance, a API para pegar a lista de marcas e de produtos do banco de dados só é feita uma vez, quando a home é acessada. É criado dois vetores para os produtos, productList (uma lista com todos os produtos ativos, retornado pela API) e productToShow (uma lista dos produtos que serão mostrados para o usuário), assim, basta manipular esses vetores para fazer a filtragem e pesquisa enquanto o usuário digita, evitando que a API seja chamada sempre que o usuário digitar algo.
+- Seguindo a mesma linha, quando um usuário inativa ou adiciona um produto novo, além de atualizar no banco de dados, é atualizado os vetores productList e productToShow, assim, atualiza em tempo real os produtos adicionados ou inativados para o usuário, sem a necessidade de reiniciar a página, e não é necessário chamar a API para pegar os produtos novamente.
+
 ### Estrutura do banco de dados
 - Nome da DataBase: testedb
 - Nome das collections: produtos, marcas
