@@ -15,11 +15,22 @@ MediaCard.propTypes = {
 }
 
 export default function MediaCard(props) {
-  const { productInfos, handleEditProductSubmit, productEditStatus, brandList, handleInactivateProduct } = props;
+  const { 
+    productInfos, 
+    handleEditProductSubmit, 
+    productEditStatus, 
+    brandList, 
+    handleInactivateProduct } = props;
+    
   return (
     <div>
-      <Card sx={{ minWidth: 400, position: 'relative', minHeight:100}}>
-      <ModalEdit productEditStatus={productEditStatus} handleInactivateProduct={handleInactivateProduct} productInfos={productInfos} handleEditProductSubmit={handleEditProductSubmit} ></ModalEdit>
+      <Card sx={{ minWidth: 400, position: 'relative', minHeight: 100 }}>
+        <ModalEdit
+          productEditStatus={productEditStatus}
+          handleInactivateProduct={handleInactivateProduct}
+          productInfos={productInfos}
+          handleEditProductSubmit={handleEditProductSubmit}
+        />
         <CardMedia
           component="img"
           height="200"
@@ -27,9 +38,12 @@ export default function MediaCard(props) {
           alt="product image"
         />
         <CardActions>
-        <ModalDetails productInfos={productInfos} brandList={brandList}></ModalDetails>
+          <ModalDetails
+            productInfos={productInfos}
+            brandList={brandList}
+          />
         </CardActions>
-        
+
       </Card>
     </div>
   );

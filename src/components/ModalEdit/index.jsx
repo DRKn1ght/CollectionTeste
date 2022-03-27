@@ -50,10 +50,21 @@ ModalEdit.propTypes = {
 }
 
 export default function ModalEdit(props) {
-    const { productInfos, handleEditProductSubmit, productEditStatus, handleInactivateProduct } = props;
-    console.log(productEditStatus)
+    const {
+        productInfos,
+        handleEditProductSubmit,
+        productEditStatus,
+        handleInactivateProduct } = props;
+        
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const handleCloseMenu = () => {
+        setAnchorEl(null);
+    };
+    const handleClickMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
     const [showAlert, setShowAlert] = React.useState(false);
     const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -63,12 +74,6 @@ export default function ModalEdit(props) {
         setShowAlert(false);
     };
 
-    const handleCloseMenu = () => {
-        setAnchorEl(null);
-    };
-    const handleClickMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const [openModal, setOpenModal] = React.useState(false);
     const handleModalOpen = () => {
@@ -78,9 +83,6 @@ export default function ModalEdit(props) {
         setOpenModal(false);
     };
 
-    const [imageURL, setImageURL] = React.useState(productInfos.thumb)
-
-
     const [newProductValues, setNewProductValues] = React.useState({
         _id: productInfos._id,
         thumb: productInfos.thumb,
@@ -88,6 +90,12 @@ export default function ModalEdit(props) {
         brand: productInfos.brand,
         active: productInfos.active,
     })
+
+    const [imageURL, setImageURL] = React.useState(productInfos.thumb)
+    const handleChangeImage = (url) => {
+        setImageURL(url);
+        handleChangeFieldNewProduct(url, "thumb");
+    }
 
     const handleChangeFieldNewProduct = (value, field) => {
         let updatedValue = {};
@@ -97,11 +105,6 @@ export default function ModalEdit(props) {
             ...updatedValue
         }));
         console.log(newProductValues)
-    }
-
-    const handleChangeImage = (url) => {
-        setImageURL(url);
-        handleChangeFieldNewProduct(url, "thumb");
     }
 
     const handleInactivateClick = () => {
@@ -116,11 +119,23 @@ export default function ModalEdit(props) {
 
     return (
         <div>
-            <IconButton aria-controls={open ? 'menu' : null} aria-expanded={open ? 'true' : null} onClick={handleClickMenu} aria-label="more" sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.2)', right: '0' }}>
+            <IconButton
+                onClick={handleClickMenu}
+                aria-label="more"
+                sx={{
+                    position: 'absolute',
+                    color: 'white',
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    right: '0'
+                }}
+            >
                 <MoreVertIcon />
             </IconButton>
             <Dialog open={openModal}>
-                <DialogURL handleChangeImage={handleChangeImage} handleChangeFieldNewProduct={handleChangeFieldNewProduct}></DialogURL>
+                <DialogURL 
+                handleChangeImage={handleChangeImage} 
+                handleChangeFieldNewProduct={handleChangeFieldNewProduct}
+                />
                 <CardMedia
                     component="img"
                     height='50%'
@@ -185,24 +200,28 @@ export default function ModalEdit(props) {
                     <Button onClick={() => { handleEditProductSubmit(newProductValues); handleSubmitClick() }}>Confirmar mudanças</Button>
                 </DialogActions>
             </Dialog>
-            
+
             <StyledMenu
                 id="menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleCloseMenu}>
+
                 <MenuItem onClick={() => { handleModalOpen(); handleCloseMenu() }} disableRipple>
                     <EditIcon />
                     Editar
                 </MenuItem>
+
                 <MenuItem onClick={() => { handleInactivateClick() }} disableRipple>
                     <ToggleOffOutlinedIcon />
                     Inativar
                 </MenuItem>
+                
             </StyledMenu>
             <Snackbar open={showAlert} onClose={handleAlertClose} autoHideDuration={3000}>
-                {productEditStatus === 201 ?
-                    <Alert severity="success">Produto editado com sucesso!</Alert> : <Alert severity="error">Ocorreu um erro ao editar o produto!</Alert>}
+                {productEditStatus === 201 
+                ? <Alert severity="success">Produto editado com sucesso!</Alert> 
+                : <Alert severity="error">Ocorreu um erro ao editar o produto!</Alert>}
             </Snackbar>
         </div>
     );

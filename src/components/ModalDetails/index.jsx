@@ -25,9 +25,12 @@ ModalDetails.propTypes = {
 }
 
 export default function ModalDetails(props) {
-  const { productInfos, brandList } = props;
+  const { 
+    productInfos, 
+    brandList } = props;
+    
   const [open, setOpen] = React.useState(false);
-  if (brandList.length === 0){
+  if (brandList.length === 0) { //Garente que a lista de marcas foi carregada
     return null
   }
   const brandInfos = brandList.find((brands) => brands.Name === productInfos.brand)
@@ -45,28 +48,40 @@ export default function ModalDetails(props) {
       </Button>
       <BootstrapDialog
         onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
         open={open}
       >
         <CardMedia
-        component="img"
-        height='50%'
-        image={productInfos.thumb}
-      />
-      <IconButton id="demo-customized-button" aria-controls={open ? 'demo-customized-menu' : undefined} aria-expanded={open ? 'true' : undefined} onClick={handleClose} aria-label="more" sx={{position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.2)', right:'0'}}>
-            <CloseIcon />
+          component="img"
+          height='50%'
+          image={productInfos.thumb}
+        />
+        <IconButton
+          onClick={handleClose}
+          aria-label="more"
+          sx={{
+            position: 'absolute',
+            color: 'white',
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            right: '0'
+          }}
+        >
+          <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-        <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary">
             {productInfos.description}
           </Typography>
+
           <Divider></Divider>
+
           <Typography gutterBottom marginTop={2}>
             {brandInfos.Name}
           </Typography>
-            <Typography variant="body2" color="text.secondary">
+
+          <Typography variant="body2" color="text.secondary">
             {brandInfos.Description}
-            </Typography>
+          </Typography>
+
         </DialogContent>
       </BootstrapDialog>
     </div>

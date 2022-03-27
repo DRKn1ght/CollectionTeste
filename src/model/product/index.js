@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-// const bcrypt = require('bcryptjs');
 
 const productSchema = mongoose.Schema({
     thumb: {

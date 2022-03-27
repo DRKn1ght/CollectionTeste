@@ -17,9 +17,6 @@ app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/brands", brandRoutes);
 
-app.get("/", (req, res) => {
-    res.send("API ligada");
-})
 app.listen(5000, ()=>{
     console.log("server ligado na porta 5000");
 });

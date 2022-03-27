@@ -14,14 +14,18 @@ DialogURL.protoType = {
     handleChangeFieldNewProduct: PropTypes.func,
     handleChangeImage: PropTypes.func
 }
+
 export default function DialogURL(props) {
-    const { handleChangeFieldNewProduct, handleChangeImage } = props;
+    const { 
+        handleChangeFieldNewProduct, 
+        handleChangeImage } = props;
+        
     const [imageURL, setImageURL] = React.useState();
     const handleChange = (event) => {
         setImageURL(event.target.value);
-      };
-    const [open, setOpen] = React.useState(false);
+    };
 
+    const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -30,14 +34,24 @@ export default function DialogURL(props) {
         setOpen(false);
     };
 
-    const handleClickSend = () =>{
+    const handleClickSend = () => {
         handleChangeImage(imageURL);
         setOpen(false);
     }
 
     return (
         <div>
-            <IconButton height='50%' onClick={handleClickOpen} sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, .4)', left: '45%', bottom: "75%", verticalAlign: 'middle' }}>
+            <IconButton
+                height='50%'
+                onClick={handleClickOpen}
+                sx={{
+                    position: 'absolute',
+                    color: 'white',
+                    backgroundColor: 'rgba(0, 0, 0, .4)',
+                    left: '45%',
+                    bottom: "75%",
+                    verticalAlign: 'middle'
+                }}>
                 <EditIcon />
             </IconButton>
             <Dialog open={open} onClose={handleClose}>
@@ -57,7 +71,7 @@ export default function DialogURL(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancelar</Button>
-                    <Button onClick={(e) => {handleChangeFieldNewProduct(e, "thumb"); handleClickSend()}}>Enviar</Button>
+                    <Button onClick={(e) => { handleChangeFieldNewProduct(e, "thumb"); handleClickSend() }}>Enviar</Button>
                 </DialogActions>
             </Dialog>
         </div>

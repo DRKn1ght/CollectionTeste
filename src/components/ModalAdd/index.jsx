@@ -25,7 +25,10 @@ ModalAdd.protoType = {
 }
 
 export default function ModalAdd(props) {
-    const { handleNewProductSubmit, productSubmitStatus } = props
+    const { 
+        handleNewProductSubmit, 
+        productSubmitStatus } = props
+        
     const [showAlert, setShowAlert] = React.useState(false);
     const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -43,10 +46,10 @@ export default function ModalAdd(props) {
     })
 
     const handleChangeFieldNewProduct = (value, field) => {
-        if (field === "active"){
-            if (value === "Ativo"){
+        if (field === "active") {
+            if (value === "Ativo") {
                 value = true
-            }else{
+            } else {
                 value = false
             }
         }
@@ -64,6 +67,7 @@ export default function ModalAdd(props) {
     const handleModalOpen = () => {
         setOpenModal(true);
     };
+
     const handleModalClose = () => {
         setNewProductValues({
             thumb: DefaultImage,
@@ -87,11 +91,22 @@ export default function ModalAdd(props) {
 
     return (
         <div>
-            <Fab color="primary" style={{ position: 'fixed', bottom: 16, right: 16 }} aria-label={"Adicionar"} onClick={handleModalOpen}>
+            <Fab
+                color="primary"
+                style={{
+                    position: 'fixed',
+                    bottom: 16,
+                    right: 16
+                }}
+                aria-label={"Adicionar"}
+                onClick={handleModalOpen}>
                 {<AddIcon />}
             </Fab>
             <Dialog open={openModal}>
-                <DialogURL handleChangeFieldNewProduct={handleChangeFieldNewProduct} handleChangeImage={handleChangeImage} />
+                <DialogURL 
+                handleChangeFieldNewProduct={handleChangeFieldNewProduct}
+                 handleChangeImage={handleChangeImage} 
+                 />
                 <CardMedia
                     component="img"
                     height='50%'
@@ -131,8 +146,9 @@ export default function ModalAdd(props) {
                 </DialogActions>
             </Dialog>
             <Snackbar open={showAlert} onClose={handleAlertClose} autoHideDuration={3000}>
-                {productSubmitStatus === 201 ?
-                    <Alert severity="success">Produto adicionado com sucesso!</Alert> : <Alert severity="error">Ocorreu um erro ao adicionar o produto!</Alert>}
+                {productSubmitStatus === 201 
+                ? <Alert severity="success">Produto adicionado com sucesso!</Alert> 
+                : <Alert severity="error">Ocorreu um erro ao adicionar o produto!</Alert>}
             </Snackbar>
         </div>
     );

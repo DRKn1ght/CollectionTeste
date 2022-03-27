@@ -1,13 +1,14 @@
 import React from 'react';
-
 import ProductsView from '../../view/ProductsView';
+
+const baseURL = "http://127.0.0.1:5000"
 
 export default function ProductsViewController() {
     const [productList, setProductList] = React.useState([]);
     const [productToShow, setProductToShow] = React.useState([])
     React.useEffect(() => {
         Promise.all([
-            fetch(`http://127.0.0.1:5000/api/products`),
+            fetch(baseURL + "/api/products"),
         ]).then(async (responses) => {
             const [productResponse] = responses;
             if (productResponse.status === 404) {
@@ -25,7 +26,7 @@ export default function ProductsViewController() {
     const [brandList, setBrandList] = React.useState([]);
     React.useEffect(() => {
         Promise.all([
-            fetch(`http://127.0.0.1:5000/api/brands`),
+            fetch(baseURL + "/api/brands"),
         ]).then(async (responses) => {
             const [brandResponse] = responses;
 
@@ -36,7 +37,6 @@ export default function ProductsViewController() {
 
             const brands = await brandResponse.json();
             setBrandList(brands);
-            console.log(brands)
         });
     }, []);
 
@@ -58,7 +58,7 @@ export default function ProductsViewController() {
             body: JSON.stringify({ thumb, description, brand, active, inactivate_date })
         };
         try {
-            fetch('http://127.0.0.1:5000/api/products/add', requestOptions).then(res => {
+            fetch(baseURL + "/api/products/add", requestOptions).then(res => {
                 setProductSubmitStatus(res.status);
                 if (res.status === 201) {
                     res.json().then(productInfos => {
@@ -96,7 +96,7 @@ export default function ProductsViewController() {
             body: JSON.stringify({ _id, thumb, description, brand, active })
         };
         try {
-            fetch('http://127.0.0.1:5000/api/products/edit', requestOptions).then(res => {
+            fetch(baseURL + "/api/products/edit", requestOptions).then(res => {
                 setProductEditStatus(res.status);
                 if (res.status === 201) {
                     res.json().then(productInfos => {
@@ -117,7 +117,7 @@ export default function ProductsViewController() {
         if (!productID) {
             return;
         }
-        const { _id, thumb, description, brand, active } = productID;
+        const { _id } = productID;
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

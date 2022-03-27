@@ -11,12 +11,13 @@ const ListItem = styled('li')(({ theme }) => ({
 
 ChipsArray.propTypes = {
     brandList: PropTypes.array,
-    productList: PropTypes.array,
     handleFilterProductByBrand: PropTypes.func,
 }
 
 export default function ChipsArray(props) {
-    const { brandList, handleFilterProductByBrand } = props
+    const { 
+        brandList,
+        handleFilterProductByBrand } = props
     const [brands, setBrands] = React.useState(brandList);
 
     React.useEffect(() => {

@@ -12,7 +12,7 @@ function App() {
     <Header></Header>
       <Routes>
         <Route path="/" element={<ProductsController />}/>
-        <Route path="/:eventName" element={<AboutController />}/>
+        <Route path="/about" element={<AboutController />}/>
       </Routes>
     </BrowserRouter> 
   )

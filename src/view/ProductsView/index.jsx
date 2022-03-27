@@ -8,16 +8,31 @@ import ModalAdd from '../../components/ModalAdd';
 import FilterTextField from '../../components/FilteTextField';
 
 export default function ProductsView(props) {
-    const { handleNewProductSubmit, handleEditProductSubmit, brandList, productSubmitStatus, productEditStatus, handleFilterProduct, productToShow, handleFilterProductByBrand, handleInactivateProduct} = props;
+    const { 
+        handleNewProductSubmit, 
+        handleEditProductSubmit, 
+        brandList, 
+        productSubmitStatus, 
+        productEditStatus, 
+        handleFilterProduct, 
+        productToShow, 
+        handleFilterProductByBrand, 
+        handleInactivateProduct } = props;
+        
     return (
         <div className='container'>
             <div className='main'>
                 <div className='left-side'>
-                    <FilterTextField handleFilterProduct={handleFilterProduct} ></FilterTextField>
-                    <Typography paddingLeft={2} gutterBottom>
-                        Filtros:
+                    <FilterTextField
+                        handleFilterProduct={handleFilterProduct}
+                    />
+                    <Typography paddingLeft={2} paddingTop={1} gutterBottom>
+                        Filtro por marca:
                     </Typography>
-                    <FilterChip brandList={brandList} handleFilterProductByBrand={handleFilterProductByBrand} productList={productToShow}></FilterChip>
+                    <FilterChip
+                        brandList={brandList}
+                        handleFilterProductByBrand={handleFilterProductByBrand}
+                    />
                 </div>
                 <div className='right-side'>
                     <Grid
@@ -37,15 +52,15 @@ export default function ProductsView(props) {
                                 handleInactivateProduct={handleInactivateProduct}
                                 productEditStatus={productEditStatus}
                                 brandList={brandList}
-                                >
-                            </Card>
+                            />
                         ))}
                     </Grid>
                 </div>
             </div>
             <ModalAdd
                 handleNewProductSubmit={handleNewProductSubmit}
-                productSubmitStatus={productSubmitStatus} />
+                productSubmitStatus={productSubmitStatus}
+            />
         </div>
     )
 }
