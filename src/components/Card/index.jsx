@@ -7,25 +7,27 @@ import ModalEdit from '../ModalEdit';
 import PropTypes from 'prop-types';
 
 MediaCard.propTypes = {
-  productInfos: PropTypes.array
+  productInfos: PropTypes.object,
+  handleEditProductSubmit: PropTypes.func,
+  handleInactivateProduct: PropTypes.func,
+  productEditStatus: PropTypes.number,
+  brandList: PropTypes.array,
 }
 
 export default function MediaCard(props) {
-  const { productInfos } = props;
+  const { productInfos, handleEditProductSubmit, productEditStatus, brandList, handleInactivateProduct } = props;
   return (
     <div>
       <Card sx={{ minWidth: 400, position: 'relative', minHeight:100}}>
-      <ModalEdit productInfos={productInfos}></ModalEdit>
+      <ModalEdit productEditStatus={productEditStatus} handleInactivateProduct={handleInactivateProduct} productInfos={productInfos} handleEditProductSubmit={handleEditProductSubmit} ></ModalEdit>
         <CardMedia
           component="img"
           height="200"
           image={productInfos.thumb}
-          alt="green iguana"
+          alt="product image"
         />
         <CardActions>
-        <ModalDetails productInfos={productInfos}></ModalDetails>
-          
-          
+        <ModalDetails productInfos={productInfos} brandList={brandList}></ModalDetails>
         </CardActions>
         
       </Card>

@@ -15,6 +15,13 @@ import ComboBox from '@mui/material/Autocomplete';
 import CardMedia from '@mui/material/CardMedia';
 import Brands from '../../data/brands'
 import PropTypes from 'prop-types';
+import DialogURL from '../DialogURL';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -36,13 +43,26 @@ const StyledMenu = styled((props) => (
 }));
 
 ModalEdit.propTypes = {
-    productInfos: PropTypes.array
-  }
+    productInfos: PropTypes.object,
+    handleEditProductSubmit: PropTypes.func,
+    productEditStatus: PropTypes.number,
+    handleInactivateProduct: PropTypes.func
+}
 
 export default function ModalEdit(props) {
-    const { productInfos } = props;
+    const { productInfos, handleEditProductSubmit, productEditStatus, handleInactivateProduct } = props;
+    console.log(productEditStatus)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const [showAlert, setShowAlert] = React.useState(false);
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setShowAlert(false);
+    };
+
     const handleCloseMenu = () => {
         setAnchorEl(null);
     };
@@ -58,23 +78,53 @@ export default function ModalEdit(props) {
         setOpenModal(false);
     };
 
-    const [value, setValue] = React.useState();
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
+    const [imageURL, setImageURL] = React.useState(productInfos.thumb)
+
+
+    const [newProductValues, setNewProductValues] = React.useState({
+        _id: productInfos._id,
+        thumb: productInfos.thumb,
+        description: productInfos.description,
+        brand: productInfos.brand,
+        active: productInfos.active,
+    })
+
+    const handleChangeFieldNewProduct = (value, field) => {
+        let updatedValue = {};
+        updatedValue[field] = value;
+        setNewProductValues(newProductValues => ({
+            ...newProductValues,
+            ...updatedValue
+        }));
+        console.log(newProductValues)
+    }
+
+    const handleChangeImage = (url) => {
+        setImageURL(url);
+        handleChangeFieldNewProduct(url, "thumb");
+    }
+
+    const handleInactivateClick = () => {
+        handleInactivateProduct(newProductValues)
+        handleCloseMenu();
+    }
+
+    const handleSubmitClick = () => {
+        setShowAlert(true);
+        handleModalClose()
+    }
+
     return (
         <div>
             <IconButton aria-controls={open ? 'menu' : null} aria-expanded={open ? 'true' : null} onClick={handleClickMenu} aria-label="more" sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.2)', right: '0' }}>
                 <MoreVertIcon />
             </IconButton>
             <Dialog open={openModal}>
-            <IconButton sx={{ position: 'absolute', color: 'white', backgroundColor: 'rgba(0, 0, 0, .4)', verticalAlign: 'middle' }}>
-                <EditIcon />
-            </IconButton>
+                <DialogURL handleChangeImage={handleChangeImage} handleChangeFieldNewProduct={handleChangeFieldNewProduct}></DialogURL>
                 <CardMedia
                     component="img"
                     height='50%'
-                    image={productInfos.thumb}
+                    image={imageURL}
                 />
                 <DialogContent dividers>
                     <TextField
@@ -86,7 +136,6 @@ export default function ModalEdit(props) {
                         label="ID do produto"
                         defaultValue={productInfos._id}
                         multiline
-                        onChange={handleChange}
                     />
 
                     <TextField
@@ -96,16 +145,16 @@ export default function ModalEdit(props) {
                         sx={{ width: '100%', marginTop: 2 }}
                         maxRows={4}
                         defaultValue={productInfos.description}
-                        value={value}
-                        onChange={handleChange}
+                        onChange={(e) => handleChangeFieldNewProduct(e.target.value, "description")}
                     />
 
                     <ComboBox
                         id="product-brand"
                         options={Brands}
                         sx={{ width: '100%', marginTop: 2 }}
-                        defaultValue={productInfos.brand}
                         renderInput={(params) => <TextField {...params} label="Marca" />}
+                        defaultValue={productInfos.brand}
+                        onChange={(event, value) => handleChangeFieldNewProduct(value.label, "brand")}
                     />
 
                     <TextField
@@ -117,7 +166,6 @@ export default function ModalEdit(props) {
                         label="Status do produto"
                         defaultValue={productInfos.active ? "Ativo" : "Inativo"}
                         multiline
-                        onChange={handleChange}
                     />
 
                     <TextField
@@ -129,15 +177,15 @@ export default function ModalEdit(props) {
                         label="Data de inativação"
                         defaultValue={productInfos.inactivate_date === undefined ? "O produto está ativo" : productInfos.inactivate_date}
                         multiline
-                        onChange={handleChange}
                     />
 
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleModalClose}>Cancelar</Button>
-                    <Button onClick={handleModalClose}>Confirmar mudanças</Button>
+                    <Button onClick={() => { handleEditProductSubmit(newProductValues); handleSubmitClick() }}>Confirmar mudanças</Button>
                 </DialogActions>
             </Dialog>
+            
             <StyledMenu
                 id="menu"
                 anchorEl={anchorEl}
@@ -147,11 +195,15 @@ export default function ModalEdit(props) {
                     <EditIcon />
                     Editar
                 </MenuItem>
-                <MenuItem onClick={() => { handleCloseMenu() }} disableRipple>
+                <MenuItem onClick={() => { handleInactivateClick() }} disableRipple>
                     <ToggleOffOutlinedIcon />
                     Inativar
                 </MenuItem>
             </StyledMenu>
+            <Snackbar open={showAlert} onClose={handleAlertClose} autoHideDuration={3000}>
+                {productEditStatus === 201 ?
+                    <Alert severity="success">Produto editado com sucesso!</Alert> : <Alert severity="error">Ocorreu um erro ao editar o produto!</Alert>}
+            </Snackbar>
         </div>
     );
 }

@@ -20,13 +20,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 ModalDetails.propTypes = {
-  productInfos: PropTypes.array
+  productInfos: PropTypes.object,
+  brandList: PropTypes.array,
 }
 
 export default function ModalDetails(props) {
-  const { productInfos } = props;
+  const { productInfos, brandList } = props;
   const [open, setOpen] = React.useState(false);
-
+  if (brandList.length === 0){
+    return null
+  }
+  const brandInfos = brandList.find((brands) => brands.Name === productInfos.brand)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -58,11 +62,11 @@ export default function ModalDetails(props) {
           </Typography>
           <Divider></Divider>
           <Typography gutterBottom marginTop={2}>
-            {productInfos.brand}
+            {brandInfos.Name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Detalhes da marca
-          </Typography>
+            <Typography variant="body2" color="text.secondary">
+            {brandInfos.Description}
+            </Typography>
         </DialogContent>
       </BootstrapDialog>
     </div>

@@ -3,38 +3,8 @@ import React from 'react';
 import ProductsView from '../../view/ProductsView';
 
 export default function ProductsViewController() {
-    const [newProductValues, setNewProductValues] = React.useState({
-        thumb: "",
-        description: "",
-        brand: "",
-        active: true,
-    })
-
-    const handleNewProductSubmit = async () => {
-        const { thumb, description, brand, active } = newProductValues;
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ thumb, description, brand, active })
-        };
-        try{
-            fetch('http://127.0.0.1:5000/api/products/add', requestOptions)
-        }catch{
-            console.log("algo deu errado");
-        }
-    }
-
-    const handleChangeFieldNewProduct = (e, field) => {
-        let updatedValue = {};
-        updatedValue[field] = e.target.value;
-        setNewProductValues(newProductValues => ({
-        ...newProductValues,
-        ...updatedValue
-        }));
-        console.log(newProductValues);
-    }
-
     const [productList, setProductList] = React.useState([]);
+    const [productToShow, setProductToShow] = React.useState([])
     React.useEffect(() => {
         Promise.all([
             fetch(`http://127.0.0.1:5000/api/products`),
@@ -47,9 +17,10 @@ export default function ProductsViewController() {
 
             const products = await productResponse.json();
             setProductList(products);
-            console.log(products);
+            setProductToShow(products);
+
         });
-    }, productList);
+    }, []);
 
     const [brandList, setBrandList] = React.useState([]);
     React.useEffect(() => {
@@ -64,22 +35,139 @@ export default function ProductsViewController() {
             }
 
             const brands = await brandResponse.json();
-            setBrandList(brands.map((data) => [{ label: data.Name, isSelected: false }]));
+            setBrandList(brands);
+            console.log(brands)
         });
-    }, brandList);
+    }, []);
 
-    const handleInsertClick = (event) => {
-        console.log("adicionar")
-    };
+    const [productSubmitStatus, setProductSubmitStatus] = React.useState();
+    const handleNewProductSubmit = async (newProductValues) => {
+        if (!newProductValues) {
+            setProductSubmitStatus(0);
+            return;
+        }
+        const { thumb, description, brand, active, inactivate_date } = newProductValues;
+        if (!thumb | !description | !brand) {
+            console.log("preencha todos os valores")
+            setProductSubmitStatus(0);
+            return;
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ thumb, description, brand, active, inactivate_date })
+        };
+        try {
+            fetch('http://127.0.0.1:5000/api/products/add', requestOptions).then(res => {
+                setProductSubmitStatus(res.status);
+                if (res.status === 201) {
+                    res.json().then(productInfos => {
+                        if (productInfos.active) { // Se for adicionado um produto inativo, não atualiza a lista de produtos.
+                            setProductList([
+                                ...productList,
+                                productInfos,
+                            ])
+                            setProductToShow([
+                                ...productToShow,
+                                productInfos,
+                            ])
+                        }
+                    })
+                }
+            })
+        } catch {
+            console.log("algo deu errado");
+        }
+    }
+
+    const [productEditStatus, setProductEditStatus] = React.useState();
+    const handleEditProductSubmit = async (newProductValues) => {
+        if (!newProductValues) {
+            return;
+        }
+        const { _id, thumb, description, brand, active } = newProductValues;
+        if (!thumb | !description | !brand | !active) {
+            console.log("preencha todos os valores")
+            return;
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ _id, thumb, description, brand, active })
+        };
+        try {
+            fetch('http://127.0.0.1:5000/api/products/edit', requestOptions).then(res => {
+                setProductEditStatus(res.status);
+                if (res.status === 201) {
+                    res.json().then(productInfos => {
+                        let newProductList = productList.map(data => (
+                            data._id === productInfos._id ? productInfos : data
+                        ))
+                        setProductList(newProductList);
+                        setProductToShow(newProductList);
+                    })
+                }
+            })
+        } catch {
+            console.log("algo deu errado");
+        }
+    }
+
+    const handleInactivateProduct = async (productID) => {
+        if (!productID) {
+            return;
+        }
+        const { _id, thumb, description, brand, active } = productID;
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ _id })
+        };
+        try {
+            fetch('http://127.0.0.1:5000/api/products/setInactive', requestOptions).then(res => {
+                setProductEditStatus(res.status);
+                if (res.status === 201) {
+                    res.json().then(productInfos => {
+                        let newProductList = productList.filter(data => (data._id !== productInfos._id));
+                        setProductList(newProductList);
+                        setProductToShow(newProductList);
+                    })
+                }
+            })
+        } catch {
+            console.log("algo deu errado");
+        }
+    }
+
+    const handleFilterProduct = (filterQuery) => {
+        console.log(filterQuery)
+        if (!filterQuery) {
+            setProductToShow(productList);
+        } else {
+            let filteredProduct = productList.filter(product => product.description.includes(filterQuery))
+            setProductToShow(filteredProduct)
+        }
+    }
+
+    const handleFilterProductByBrand = (filterList) => {
+        if (filterList.length === 0) {
+            setProductToShow(productList)
+        } else {
+            let filteredProduct = productList.filter(product => filterList.includes(product.brand));
+            setProductToShow(filteredProduct)
+        }
+    }
 
     return (
         <ProductsView
-            newProductValues={newProductValues}
-            setNewProductValues={setNewProductValues}
-            handleNewProductSubmit={handleNewProductSubmit}
-            handleChangeFieldNewProduct={handleChangeFieldNewProduct}
-            productList={productList}
             brandList={brandList}
-            handleInsertClick={() => { handleInsertClick() }} />
+            handleNewProductSubmit={handleNewProductSubmit}
+            handleEditProductSubmit={handleEditProductSubmit}
+            productToShow={productToShow}
+            productSubmitStatus={productSubmitStatus}
+            productEditStatus={productEditStatus}
+            handleFilterProduct={handleFilterProduct}
+            handleFilterProductByBrand={handleFilterProductByBrand}
+            handleInactivateProduct={handleInactivateProduct} />
     )
 }

@@ -10,23 +10,29 @@ const ListItem = styled('li')(({ theme }) => ({
 }));
 
 ChipsArray.propTypes = {
-    brandList: PropTypes.array
+    brandList: PropTypes.array,
+    productList: PropTypes.array,
+    handleFilterProductByBrand: PropTypes.func,
 }
 
 export default function ChipsArray(props) {
-    const { brandList } = props
+    const { brandList, handleFilterProductByBrand } = props
     const [brands, setBrands] = React.useState(brandList);
-    
+
     React.useEffect(() => {
-        setBrands(brandList);
+        setBrands(brandList.map((data) => [{ label: data.Name, isSelected: false }]));
     }, [brandList])
 
     const handleChipSelected = (chipToSelect) => () => {
-            setBrands(brands.map((data) => data[0].label === chipToSelect.label //remapeia o array, verificando quando o label que esta sendo iterado é igual ao label que recebeu o click
-                ? [{ ...data[0], isSelected: !data[0].isSelected }] // caso for igual, inverte o valor de 'isSelected
-                : [data[0]]) // Caso contrário, mantém o mesmo valor.
-            )}
-
+        let updateBrands = brands.map((data) => data[0].label === chipToSelect.label //remapeia o array, verificando quando o label que esta sendo iterado é igual ao label que recebeu o click
+            ? [{ ...data[0], isSelected: !data[0].isSelected }] // caso for igual, inverte o valor de 'isSelected
+            : [data[0]]) // Caso contrário, mantém o mesmo valor.
+        setBrands(updateBrands)
+        const queryArray = updateBrands.flat().filter((brand) => brand.isSelected).map((brand) => brand.label)
+        console.log(queryArray);
+        handleFilterProductByBrand(queryArray);
+    }
+    
     return (
         <div className='filter-container'>
             {brands.map((data) => {

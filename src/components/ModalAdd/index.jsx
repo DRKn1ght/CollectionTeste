@@ -11,28 +11,78 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import DefaultImage from '../../assets/PortobelloDefault.webp';
 import PropTypes from 'prop-types';
-import DialogURL from '../DialogURL'
+import DialogURL from '../DialogURL';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 ModalAdd.protoType = {
-    newProductValues: PropTypes.func,
-    setNewProductValues: PropTypes.func,
     handleNewProductSubmit: PropTypes.func,
-    handleChangeFieldNewProduct: PropTypes.func
+    productSubmitStatus: PropTypes.number
 }
 
 export default function ModalAdd(props) {
-    const { newProductValues, setNewProductValues, handleNewProductSubmit, handleChangeFieldNewProduct } = props;
+    const { handleNewProductSubmit, productSubmitStatus } = props
+    const [showAlert, setShowAlert] = React.useState(false);
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setShowAlert(false);
+    };
+
+    const [newProductValues, setNewProductValues] = React.useState({
+        thumb: DefaultImage,
+        description: "",
+        brand: "",
+        active: false,
+    })
+
+    const handleChangeFieldNewProduct = (value, field) => {
+        if (field === "active"){
+            if (value === "Ativo"){
+                value = true
+            }else{
+                value = false
+            }
+        }
+        let updatedValue = {};
+        updatedValue[field] = value;
+        setNewProductValues(newProductValues => ({
+            ...newProductValues,
+            ...updatedValue
+        }));
+        console.log(newProductValues)
+    }
+
     const [imageURL, setImageURL] = React.useState(DefaultImage)
     const [openModal, setOpenModal] = React.useState(false);
     const handleModalOpen = () => {
         setOpenModal(true);
     };
     const handleModalClose = () => {
+        setNewProductValues({
+            thumb: DefaultImage,
+            description: "",
+            brand: "",
+            active: false,
+        });
+        setImageURL(DefaultImage)
         setOpenModal(false);
     };
 
-    const handleChangeImage = (url) =>{
+    const handleSubmit = () => {
+        setShowAlert(true);
+        handleModalClose();
+    }
+
+    const handleChangeImage = (url) => {
         setImageURL(url);
+        handleChangeFieldNewProduct(url, "thumb");
     }
 
     return (
@@ -41,7 +91,7 @@ export default function ModalAdd(props) {
                 {<AddIcon />}
             </Fab>
             <Dialog open={openModal}>
-                <DialogURL handleChangeFieldNewProduct={handleChangeFieldNewProduct} handleChangeImage={handleChangeImage}/>
+                <DialogURL handleChangeFieldNewProduct={handleChangeFieldNewProduct} handleChangeImage={handleChangeImage} />
                 <CardMedia
                     component="img"
                     height='50%'
@@ -55,7 +105,7 @@ export default function ModalAdd(props) {
                         multiline
                         sx={{ width: '100%', marginTop: 2 }}
                         maxRows={4}
-                        onChange={(e) => {handleChangeFieldNewProduct(e, "description")}}
+                        onChange={(e) => handleChangeFieldNewProduct(e.target.value, "description")}
                     />
 
                     <ComboBox
@@ -63,7 +113,7 @@ export default function ModalAdd(props) {
                         options={Brands}
                         sx={{ width: '100%', marginTop: 2 }}
                         renderInput={(params) => <TextField {...params} label="Marca" />}
-                        onChange={(e) => {handleChangeFieldNewProduct(e, "brand")}}
+                        onChange={(event, value) => handleChangeFieldNewProduct(value.label, "brand")}
                     />
 
                     <ComboBox
@@ -71,15 +121,19 @@ export default function ModalAdd(props) {
                         options={['Ativo', 'Inativo']}
                         sx={{ width: '100%', marginTop: 2 }}
                         renderInput={(params) => <TextField {...params} label="Status do produto" />}
-                        onChange={(e) => {handleChangeFieldNewProduct(e, "active")}}
+                        onChange={(event, value) => handleChangeFieldNewProduct(value, "active")}
                     />
 
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleModalClose}>Cancelar</Button>
-                    <Button onClick={handleModalClose}>Adicionar produto</Button>
+                    <Button onClick={() => { handleNewProductSubmit(newProductValues); handleSubmit() }}>Adicionar produto</Button>
                 </DialogActions>
             </Dialog>
+            <Snackbar open={showAlert} onClose={handleAlertClose} autoHideDuration={3000}>
+                {productSubmitStatus === 201 ?
+                    <Alert severity="success">Produto adicionado com sucesso!</Alert> : <Alert severity="error">Ocorreu um erro ao adicionar o produto!</Alert>}
+            </Snackbar>
         </div>
     );
 }

@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema({
         required: true,
     },
     active: {
-        type: String,
+        type: Boolean,
         required: true,
     },
     inactive_date: {

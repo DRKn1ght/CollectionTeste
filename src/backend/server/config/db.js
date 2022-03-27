@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
-const mongoURI = "mongodb+srv://CollectionTest:ydRvsvxOWVQxsGLH@collection.lpmyt.mongodb.net/testedb"
+
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(mongoURI, {
+        const conn = await mongoose.connect(process.env.REACT_APP_MONGOURI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
         });

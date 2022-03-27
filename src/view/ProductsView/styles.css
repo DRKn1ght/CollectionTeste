@@ -9,6 +9,8 @@ body,html {
 }
 
 .main{ 
+    position: sticky;
+    width: 100%;
     display: flex;
 }
 @media screen and (max-width: 1240px){
@@ -29,10 +31,7 @@ body,html {
 
 .right-side{ 
     width: 100%;
-}
-
-.fab-style{
-    position: fixed;
-    bottom: 16;
-    right: 16;
+    position: static;
+    left: 25%;
+    
 }
