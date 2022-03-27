@@ -1,0 +1,127 @@
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced35"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/metallica_1056.jpg", 
+    "description" : "Acabamentos longilíneos em metal que personalizam ainda mais os detalhes dos mais variados projetos. Diversas soluções para finalizações de alta costura na arquitetura:\n Line - suavidade e discrição, ideal para projetos que peçam leveza com identidade\n Plan - perfil de forma quadrada, proporciona sofisticação ao ambiente, acompanhamento ideal para porcelanatos retificados\n Valley - utilizado em móveis agregam singularidade, e em paginações, possibilita respiro e personaliza projetos\n Lumi - alternativas para soluções retro iluminadas de paredes, pisos e tetos, focos de luz e realce ao ambiente Finalização impecável para projetos contemporâneos.", 
+    "brand" : "Delta", 
+    "active" : true, 
+    "inactive_date" : "", 
+    "updatedAt" : ISODate("2022-03-27T16:52:08.936+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced36"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/mineral-tecnica_364.jpg", 
+    "description" : "Apresenta soluções para ambientes que demandam alto desempenho em usos especiais. ", 
+    "brand" : "Decortiles", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:10:52.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:10:52.125+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced37"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/steel_394.jpg", 
+    "description" : "Vestir a casa é uma experiência de personalização. E as paredes são as protagonistas desse processo.\nUma seleção de relevos e texturas que atuam como papel de parede ou como superfícies tridimensionais compõem as novidades dessa linha exclusiva para paredes.\nWall Mosaic renova o closet Portobello para paredes. ", 
+    "brand" : "Delta", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:10:53.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:10:53.960+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced38"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/wall-mosaic_406.jpg", 
+    "description" : "Vestir a casa é uma experiência de personalização. E as paredes são as protagonistas desse processo.\nUma seleção de relevos e texturas que atuam como papel de parede ou como superfícies tridimensionais compõem as novidades dessa linha exclusiva para paredes.\nWall Mosaic renova o closet Portobello para paredes. ", 
+    "brand" : "Ceusa", 
+    "active" : true, 
+    "inactive_date" : "", 
+    "updatedAt" : ISODate("2022-03-27T07:01:00.709+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced39"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/araucaria_986.jpg", 
+    "description" : "A reprodução da Araucária, espécie nativa da Mata Atlântica da região Sul do Brasil.\nA superfície das tábuas apresenta uma nova textura, desenvolvida com aplicação de microgrânulos de quartzo e um ciclo especial de queima. O resultado é um toque ainda mais natural e uma sensação de que as fibras da madeira têm um levíssimo relevo, o que proporciona mais aconchego aos ambientes.\nEssa nova superfície está disponível na Araucaria Clara Touch e no novo tom, Araucaria Escura Touch, que revela nuances castanhas e amendoadas com menor contraste entre os veios da madeira. ", 
+    "brand" : "Portinari", 
+    "active" : false, 
+    "inactive_date" : ISODate("2022-03-27T16:38:22.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T16:38:22.735+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3a"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/area_581.jpg", 
+    "description" : "Area representa a essência das cores puras e básicas que se opõem e se complementam em diversas escalas, colocando-se como matéria prima para projetos únicos. ", 
+    "brand" : "Portobello", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:10:49.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:10:49.695+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3b"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/boreal_859.jpg", 
+    "description" : "As florestas boreais ocorrem apenas no hemisfério norte, em uma região onde o solo ainda se mantém descongelado durante o verão. São poucas e fortes as espécies que compõem a flora dessa região, como abetos, pinheiros, faias e bétulas.\nBoreal reproduz uma seleção dessas madeiras que tem como característica comum a cor clara com nuances douradas e a presença de nós.\nSão duas versões, a Natural que tem tons mais homogêneos e  o Mix, onde a mistura de tons proposital faz um contraponto mais rústico a essa proposta mais minimalista. Uma nova opção para ambientes internos e externos que possibilita uma atmosfera aconchegante, mas pouco óbvia.\nO formato 20x180 surpreende para uso no piso e também na parede, ampliando a versatilidade dessa madeira. ", 
+    "brand" : "Portinari", 
+    "active" : true, 
+    "inactive_date" : "", 
+    "updatedAt" : ISODate("2022-03-27T02:17:01.004+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3c"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/cottage_506.jpg", 
+    "description" : "Casa de campo, em tradução literária, a Linha Cottage representa o charme e o estilo da Provence, onde o branco é um recurso para que materiais e texturas seculares mantenham a essência e ganhem uma roupagem contemporânea. O conceito Cottage traz para a arquitetura das grandes cidades uma possibilidade de interpretar a atmosfera do campo na vida urbana. Madeira, pedra e muro - Canelle, Pierre e Mur - pintados de branco são as peças básicas dessa proposta muito sofisticada e nada pretensiosa, que possibilita usar essa cor com aconchego e expressividade. Cottage é chic e despojada. ", 
+    "brand" : "Portobello", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:29:56.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:29:56.583+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3d"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/easy-collection_1041.jpg", 
+    "description" : "Madeira clara de veios suaves, com leve passagem de cor. Assim como os portos que oferecem abrigo e segurança, Harbour proporciona aconchego para todos os ambientes da casa.\nA cidade de Granville, estado de Nova York, é um dos lugares do mundo onde o slate colorido é obtido. Esse tipo de pedra se forma em camadas e revela um aspecto particular, como finas lâminas e uma superfície rústica.\nFossil, um limestone de tons acinzentados, com a versatilidade da superfície de concreto e com pequenos detalhes de uma pedra, se torna curinga em projetos contemporâneos.\nDe origem espanhola e tons suaves, o Marfil é um mármore clássico. Os veios se distribuem na superfície de forma harmônica e discreta.\nLeve como a Brisa, este produto possui relevo suave, mas com muita personalidade. A superfície, que forma uma espécie de trama, convida ao toque e se torna uma opção elegante para paredes.", 
+    "brand" : "Ceusa", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:10:39.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:10:39.222+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3e"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/ecodiversa_1012.jpg", 
+    "description" : "Desenhos suaves e tons iluminados proporcionam aconchego aos ambientes.\nEcodiversa reproduz de forma minimalista e elegante as características da madeira -  uma proposta em porcelanato que atualiza as opções para projetos contemporâneos e despojados. ", 
+    "brand" : "Portinari", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:07:06.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:07:06.237+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced3f"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/ecollection_976.jpg", 
+    "description" : "Ricas espécies de madeiras", 
+    "brand" : "Decortiles", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:05:25.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:05:25.528+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced40"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/ecowood-2-0_342.jpg", 
+    "description" : "Reprodução de madeira de demolição vinda de Minas Gerais, Ecowood 2.0 supera sua versão anterior, em formatos, superfície e design, mas conserva suas raízes e vai deixar as pessoas apaixonadas novamente", 
+    "brand" : "Portobello", 
+    "active" : true, 
+    "inactive_date" : ISODate("2022-03-27T06:07:52.000+0000"), 
+    "updatedAt" : ISODate("2022-03-27T06:07:52.532+0000")
+}
+{ 
+    "_id" : ObjectId("623e92ff8d12a52e81fced41"), 
+    "thumb" : "https://www.portobello.com.br/data/lines/banner/medio/forma_534.jpg", 
+    "description" : "No lugar das tesouras, tecnologia de ponta com jato d’água para criar looks surpreendentes e exclusivos para todos os ambientes. Formas orgânicas inspiradas na cauda do pavão, a sobreposição das escamas ou a tradição francesa dos chevrons destacam-se como acessórios poderosos e cheios de personalidade para decoração. Forma atualiza a coleção de mosaicos em Porcelanato para compor soluções em pisos e paredes em mármores, concreto, madeira e outros materiais. Uma releitura com pegada contemporânea para ser matéria prima de projetos criativos.", 
+    "brand" : "Delta", 
+    "active" : true, 
+    "inactive_date" : "", 
+    "updatedAt" : ISODate("2022-03-27T05:51:00.871+0000")
+}
+{ 
+    "_id" : ObjectId("6240a06ed71a18a316973496"), 
+    "thumb" : "/static/media/PortobelloDefault.34f8157572b8bf4f8924.webp", 
+    "description" : "testeaaaa", 
+    "brand" : "Portinari", 
+    "active" : true, 
+    "createdAt" : ISODate("2022-03-27T17:35:42.407+0000"), 
+    "updatedAt" : ISODate("2022-03-27T17:35:47.488+0000"), 
+    "__v" : NumberInt(0)
+}

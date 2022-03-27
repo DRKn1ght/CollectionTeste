@@ -30,12 +30,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "nodes": "node ./src/backend/server/index.js",
+    "startFront" : "react-scripts start",
+    "startBack": "node ./src/backend/server/index.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm run start\" \"npm run nodes\""
+    "start": "concurrently \"npm run startFront\" \"npm run startBack\""
   },
   "eslintConfig": {
     "extends": [

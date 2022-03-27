@@ -1,0 +1,25 @@
+{ 
+    "_id" : ObjectId("623e162dbea7ada3eaca315b"), 
+    "Name" : "Portobello", 
+    "Description" : "A Portobello S.A. é uma empresa brasileira do ramo de revestimentos cerâmicos. Fundada em 1979, situa-se no município de Tijucas, em Santa Catarina e com os seus 205 mil metros quadrados de área construída, é considerado o maior parque fabril do ramo na América Latina."
+}
+{ 
+    "_id" : ObjectId("623e16d9bea7ada3eaca315d"), 
+    "Name" : "Decortiles", 
+    "Description" : "Revestimentos exclusivos que unem tecnologia, nossa paixão por design e a beleza do feito à mão."
+}
+{ 
+    "_id" : ObjectId("623e16fbbea7ada3eaca315e"), 
+    "Name" : "Portinari", 
+    "Description" : "A marca de revestimentos cerâmicos tem como missão ser a empresa de maior crescimento e rentabilidade no seu segmento até 2020, garantindo a sustentabilidade do negócio e o reconhecimento por agregar valor para os clientes."
+}
+{ 
+    "_id" : ObjectId("623e170ebea7ada3eaca315f"), 
+    "Name" : "Delta", 
+    "Description" : "A maior e mais moderna indústria de revestimentos cerâmicos do Brasil está estrategicamente localizada no maior centro produtor de revestimentos cerâmicos das Américas e um dos maiores do mundo, com 12 linhas de produção de altíssima tecnologia e equipamentos de última geração.\nNano Tecnologia, Efeito Digital, Maior Aderência, Resistência ao Tráfego e Total Resistência à Mancha D`Água, são alguns dos diferenciais do nosso variado mix de produtos, além de qualidade comprovada pelo CCB."
+}
+{ 
+    "_id" : ObjectId("623e171cbea7ada3eaca3160"), 
+    "Name" : "Ceusa", 
+    "Description" : "Acreditamos que ambientes existem para serem vividos. Para isso, por meio de nossas marcas - Deca, Portinari, Hydra, Duratex, Ceusa e Durafloor – oferecemos soluções que combinam estética e funcionalidade, promovendo conforto e bem-estar."
+}
