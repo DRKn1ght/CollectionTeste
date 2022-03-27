@@ -124,7 +124,7 @@ export default function ProductsViewController() {
             body: JSON.stringify({ _id })
         };
         try {
-            fetch('http://127.0.0.1:5000/api/products/setInactive', requestOptions).then(res => {
+            fetch(baseURL + "/api/products/setInactive", requestOptions).then(res => {
                 setProductEditStatus(res.status);
                 if (res.status === 201) {
                     res.json().then(productInfos => {
