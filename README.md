@@ -31,18 +31,20 @@
 - Estrutura das marcas:
   - _id, Name, Description
 
-### Para executar
+## Para executar
 Primeiro, clonar o repositório:
 
     git clone https://github.com/DRKn1ght/CollectionTeste.git
-Após clonar o repositório, instalar as dependências com:
-
-    npm install
-
-É preciso adicionar um arquivo nomeado como ".env" na root do projeto, para inicializar a variável de ambiente, que é a URI do MongoDB.
+    
+Após clonar o repositório, é preciso adicionar um arquivo nomeado como ".env" na root do projeto, para inicializar a variável de ambiente, que é a URI do MongoDB.
 Para isso, crie um arquivo com o nome ".env" e adicione nele a seguinte linha:
 
     REACT_APP_MONGOURI="URI DO MONGO AQUI"
+
+Depois, instale as dependencias com:
+
+    npm install
+
 Por fim, execute o projeto com:
 
     npm run start
