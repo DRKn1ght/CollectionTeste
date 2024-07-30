@@ -1,4 +1,4 @@
-# Collection - Teste de Estágio - DEV
+# Collection -DEV
 
 ## Tecnologias utilizadas 
 ### Front-End
