@@ -1,52 +1,56 @@
 # Collection -DEV
 
-## Tecnologias utilizadas 
+## Technologies Used
 ### Front-End
-- Linguagem
+- Language
   - ReactJS
-  - CSS para estilização
-- Arquitetura
-  - Foi utilizado o modelo MVC (Model, View, Controller)
+  - CSS for styling
+- Architecture
+  - The MVC (Model, View, Controller) model was used
 - Design
-  - Foi utilizado os componentes [MUI](https://mui.com/) para a estilização do site
-- O Frond-End é iniciado na porta 3000 
+  - [MUI](https://mui.com/) components were used for site styling
+- The Front-End runs on port 3000
 ### Back-End
-- Linguagem
+- Language
   - NodeJS
-- Banco de dados
-  - MongoDB (obs: Foi utilizado o MongoDB Atlas, para que o banco de dados seja hospedado)
-- Rotas e API
-  - Foi utilizado Express para a criação das rotas de API e o Mongoose para a conexão com o banco de dados
-- A API é iniciada na porta 5000
+- Database
+  - MongoDB (note: MongoDB Atlas was used to host the database)
+- Routes and API
+  - Express was used to create the API routes, and Mongoose for database connection
+- The API runs on port 5000
 
-### Observações
-- Por questões de performance, a API para pegar a lista de marcas e de produtos do banco de dados só é feita uma vez, quando a home é acessada. É criado dois vetores para os produtos, productList (uma lista com todos os produtos ativos, retornado pela API) e productToShow (uma lista dos produtos que serão mostrados para o usuário), assim, basta manipular esses vetores para fazer a filtragem e pesquisa enquanto o usuário digita, evitando que a API seja chamada sempre que o usuário digitar algo.
-- Seguindo a mesma linha, quando um usuário inativa ou adiciona um produto novo, além de atualizar no banco de dados, é atualizado os vetores productList e productToShow, assim, atualiza em tempo real os produtos adicionados ou inativados para o usuário, sem a necessidade de reiniciar a página, e não é necessário chamar a API para pegar os produtos novamente.
+### Notes
+- For performance reasons, the API to fetch the list of brands and products from the database is only called once when the homepage is accessed. Two arrays are created for the products, productList (a list with all active products, returned by the API) and productToShow (a list of products that will be shown to the user). This way, you only need to manipulate these arrays for filtering and searching as the user types, avoiding repeated API calls every time the user types something.
+- Similarly, when a user deactivates or adds a new product, besides updating the database, the arrays productList and productToShow are updated in real-time, reflecting the added or deactivated products to the user without needing to refresh the page or call the API again to fetch the products.
 
-### Estrutura do banco de dados
-- Nome da DataBase: testedb
-- Nome das collections: produtos, marcas
-- Estrutura dos produtos:
+### Database Structure
+- Database Name: testedb
+- Collections: products, brands
+- Products structure:
   - _id, thumb, description, brand, active, inactive_date
-- Estrutura das marcas:
+- Brands structure:
   - _id, Name, Description
 
-## Para executar
-Primeiro, clonar o repositório:
+## How to Run
+First, clone the repository:
 
     git clone https://github.com/DRKn1ght/CollectionTeste.git
     
-Após clonar o repositório, é preciso adicionar um arquivo nomeado como ".env" na root do projeto, para inicializar a variável de ambiente, que é a URI do MongoDB.
-Para isso, crie um arquivo com o nome ".env" e adicione nele a seguinte linha:
+After cloning the repository, you need to add a file named ".env" to the project root to initialize the environment variable, which is the MongoDB URI.
+To do this, create a file named ".env" and add the following line:
 
-    REACT_APP_MONGOURI="URI DO MONGO AQUI"
+    REACT_APP_MONGOURI="MONGO URI HERE"
 
-Depois, instale as dependencias com:
+Then, install the dependencies with:
 
     npm install
 
-Por fim, execute o projeto com:
+Finally, run the project with:
 
     npm run start
 
-A API e o Front-End devem iniciar em seguida.
+The API and Front-End should start shortly.
+
+## Demo
+![collection(1)](https://github.com/user-attachments/assets/804cb748-1e74-44b2-b15c-edc727b51add)
+
